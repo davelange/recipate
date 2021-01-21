@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { store } from './state/initialStoreData';
+import { RecipeContext } from './state/appContexts';
+import Home from './pages/Home';
+import SearchResults from './pages/SearchResults';
+import Recipe from './pages/Recipe';
 
 function App() {
+  const [query, setQuery] = React.useState(store.query);
+  const [savedRecipes, setSavedRecipes] = React.useState(store.savedRecipes);
+  const [selectedRecipe, setSelectedRecipe] = React.useState(0);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RecipeContext.Provider value={{ selectedRecipe, setSelectedRecipe}} >
+        <BrowserRouter>
+          <Switch>          
+            <Route exact path="/">
+              <Home 
+                query={query} 
+                setQuery={setQuery} />
+            </Route>
+            <Route path="/search">
+              <SearchResults 
+                query={query}
+                selectRecipe={setSelectedRecipe} />
+            </Route>
+            <Route path="/recipe">
+              <Recipe 
+                id={selectedRecipe} />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      </RecipeContext.Provider>
     </div>
   );
 }
