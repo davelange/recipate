@@ -15,13 +15,25 @@ export default function Home(props) {
     }, []); 
 
     async function getPopularRecipes() {
-        const data = await API_Random();
+        //const data = await API_Random();
+        const data = [
+            {
+              title: 'Garlicky Kale',
+              image: 'https://spoonacular.com/recipeImages/644387-556x370.jpg',
+              id: 644387
+            },
+            {
+              title: 'Garlicky Kale',
+              image: 'https://spoonacular.com/recipeImages/644387-556x370.jpg',
+              id: 4345
+            }
+            ];
         setPopularRecipes(data);
         setIsLoading(false);
     }
 
     return (
-        <div>
+        <div className="lg:container">
             { popularRecipes.length ?                                 
                 <>
                 <QueryContext.Provider value={props}>

@@ -1,24 +1,15 @@
 import React, { useEffect } from 'react';
-import { API_Get_Recipe } from '../api/apiRequests';
 import { RecipeContext } from '../state/appContexts';
 
 function Recipe() {
 
-    const { selectedRecipe, setSelectedRecipe } = React.useContext(RecipeContext);
-
-    const [recipeData, setRecipeData] = React.useState({});
+    const { selectedRecipe } = React.useContext(RecipeContext);
 
     const [isLoading, setIsLoading] = React.useState(true);
 
     useEffect( () => {
-        getRecipe();
+        setIsLoading( selectedRecipe ? false : true );
     }, []);
-
-    async function getRecipe() {
-        const data = await API_Get_Recipe( selectedRecipe );
-        setRecipeData( data );
-        setIsLoading(false);
-    }
 
     return (
         <div>

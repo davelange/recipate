@@ -21,17 +21,20 @@ function Search() {
     }
 
     return (
-        <form onSubmit={ handleSubmit }>
-            <input 
-                type="search" 
-                placeholder="Pasta or wtv" 
-                onChange={ e => setTempTerm(e.target.value) } />
+        <form className="rounded-xl rounded-t-none shadow-lg py-6 px-8" onSubmit={ handleSubmit }>
+            <div className="flex">
+                <input 
+                    className="py-2 px-4 border border-gray-400 border-solid rounded-3xl"
+                    type="search" 
+                    placeholder='Try "Pasta"'
+                    onChange={ e => setTempTerm(e.target.value) } />
 
-            <button
-                type="button"
-                onClick={ () => setExpand( true ) }>
-                    More </button>
-            
+                <button
+                    className="bg-red-500 rounded-3xl"
+                    type="button"
+                    onClick={ () => setExpand( true ) }>
+                        . </button>
+            </div>
             { expand && <SearchSettings /> }                            
 
         </form>

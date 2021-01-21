@@ -9,14 +9,20 @@ export default function RecipeCard(props) {
     const history = useHistory();
 
     function handleClick() {
-        setSelectedRecipe(props.data.id)
+        setSelectedRecipe(props.data)
         history.push(`/recipe/${props.data.id}`);
     }
 
     return (
-        <div onClick={ () => handleClick() }>
-            <img width="100px"src={props.data.image} alt={props.data.title} />
-            <p>{ props.data.title }</p>
+        <div
+            className="flex my-6 bg-gray-50 rounded-lg" 
+            onClick={ () => handleClick() }>
+
+            <img className="w-2/5 rounded-lg" src={props.data.image} alt={props.data.title} />
+
+            <div className="px-4 py-2">
+                <h3 className="text-l">{ props.data.title }</h3>
+            </div>            
         </div>
     )
 }

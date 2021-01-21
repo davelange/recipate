@@ -9,7 +9,7 @@ import Recipe from './pages/Recipe';
 function App() {
   const [query, setQuery] = React.useState(store.query);
   const [savedRecipes, setSavedRecipes] = React.useState(store.savedRecipes);
-  const [selectedRecipe, setSelectedRecipe] = React.useState(0);
+  const [selectedRecipe, setSelectedRecipe] = React.useState({});
 
   return (
     <div className="App">

@@ -8,9 +8,7 @@ import {mealTypes} from '../state/initialStoreData';
 
 function SearchSettings() {
     
-    const {query, setQuery} = React.useContext(QueryContext);
-    
-    console.log('advanced settings RERENDER')
+    const {query, setQuery} = React.useContext(QueryContext);    
 
     return (
         <div>            
