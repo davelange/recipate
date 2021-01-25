@@ -3,7 +3,7 @@ import SplashScreen from '../containers/SplashScreen';
 import PopularRecipes from '../containers/PopularRecipes';
 import {API_Random} from '../api/apiRequests';
 
-export default function Home(props) {
+export default function Home() {
 
     const [popularRecipes, setPopularRecipes] = React.useState([]);    
     const [isLoading, setIsLoading] = React.useState(true);
@@ -14,18 +14,6 @@ export default function Home(props) {
 
     async function getPopularRecipes() {
         const data = await API_Random();
-        /* const data = [
-            {
-              title: 'Garlicky Kale',
-              image: 'https://spoonacular.com/recipeImages/644387-556x370.jpg',
-              id: 644387
-            },
-            {
-              title: 'Garlicky Kale',
-              image: 'https://spoonacular.com/recipeImages/644387-556x370.jpg',
-              id: 4345
-            }
-            ]; */
         setPopularRecipes(data);
         setIsLoading(false);
     }

@@ -25,22 +25,18 @@ function App() {
           <Switch>          
             
             <Route exact path="/">
-              <Home 
-                query={query} 
-                setQuery={setQuery} />
+              <Home />
             </Route>
 
             <Route path="/search">
-              <SearchResults 
-                query={query} 
-                setQuery={setQuery}
+              <SearchResults                 
                 selectRecipe={setSelectedRecipe} />
             </Route>
 
             <Route path="/recipe">
-              <Recipe 
-                id={selectedRecipe} />
+              <Recipe />
             </Route>
+            
           </Switch>
         </BrowserRouter>
       </RecipeContext.Provider>

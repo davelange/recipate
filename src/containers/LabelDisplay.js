@@ -11,7 +11,7 @@ export default function({limit, recipe}) {
         <div className="flex flex-wrap">
             <RecipeLabel color="yellow">
                 <FeatherIcon icon="clock" width="12" height="12" />
-                { recipeTimeCalc(recipe.readyInMinutes) }                        
+                <span className="ml-1">{ recipeTimeCalc(recipe.readyInMinutes) }</span>
             </RecipeLabel>
 
             { limitedDiets().map( (item, i) => 

@@ -6,6 +6,8 @@ import RecipeInstructions from '../containers/RecipeInstructions';
 import RecipeCredits from '../components/RecipeCredits';
 import { RecipeContext } from '../state/appContexts';
 import {sample} from '../state/initialStoreData'
+import { API_Get_Recipe } from '../api/apiRequests';
+import { useLocation, Route } from 'react-router-dom';
 
 function Recipe() {
 
@@ -13,16 +15,26 @@ function Recipe() {
 
     const [isLoading, setIsLoading] = React.useState(true);
 
+    const location = useLocation();    
+
     useEffect( () => {
         if( !( 'title' in selectedRecipe) ) {
-            setSelectedRecipe(sample)            
-        }        
-        setIsLoading( selectedRecipe ? false : true );
+            getRecipeById();            
+        }                
+        else {
+            setIsLoading( selectedRecipe ? false : true );
+        }
     }, []);
 
-    /* async function getRecipeById() {
-        const data = await API_Get_Recipe();
-    } */
+    async function getRecipeById() {
+        const data = await API_Get_Recipe( getId() );
+        setSelectedRecipe( data );
+        setIsLoading( false );
+    } 
+
+    function getId() {
+        return location.pathname.split('/').reverse()[0];
+    }
 
     return (
         <div className="lg:container mx-auto py-6 px-8">
