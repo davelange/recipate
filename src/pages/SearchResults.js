@@ -1,6 +1,7 @@
 import React from 'react';
 import {API_ComplexSearch} from '../api/apiRequests';
 import { ResultsDisplay } from '../containers/ResultsDisplay';
+import Loader from '../components/Loader';
 
 export default function SearchResults(props) {
 
@@ -19,14 +20,16 @@ export default function SearchResults(props) {
     }
 
     return (
-        <div>
-            <h1>Search results</h1>
+        <div className="lg:container mx-auto py-6 px-8">            
+
             { isLoading ? 
-                <p>Gathering the ingredients...</p>
+                <Loader />                
                 :
+                <>
                 <ResultsDisplay
                     results={searchResults.results}
                     selectRecipe={props.selectRecipe} />
+                </>
             }
 
         </div>

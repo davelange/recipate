@@ -8,32 +8,41 @@ import {mealTypes} from '../state/initialStoreData';
 
 function SearchSettings() {
     
-    const {query, setQuery} = React.useContext(QueryContext);    
+    const {query, setQuery} = React.useContext(QueryContext);        
 
     return (
-        <div>            
-            <span>Settings</span>
+        <div className="expand-collapse overflow-hidden">           
 
-                { query.options.map( (item, i) => (
-                <Checkbox 
-                    item={item} 
-                    key={item.queryStr} 
-                    clickEv={() => setQuery( toggleQueryOption(query, i) ) } />
-                )) }
+            <div className="my-5">
+                <legend className="my-2 text-gray-400">Settings</legend>
+                <fieldset className="flex justify-between align-center">
+                    { query.options.map( (item, i) => (
+                    <Checkbox 
+                        item={item} 
+                        key={item.queryStr} 
+                        clickEv={() => setQuery( toggleQueryOption(query, i) ) } />
+                    )) }
+                </fieldset>
+            </div>  
 
-                
-                <span>Type of meal</span>
-
-                { mealTypes.map( item => (
-                    <MealTypeCard
-                    name={item.name}
-                    key={item.name}
-                    clickEv={() => setQuery( setMealOption(query, item.name) ) } />
-                )) }
-
-                <Button 
-                text="Find me some recipes"
-                type="submit" />             
+            <div className="my-5">
+                <legend className="my-2 text-gray-400">Type of meal</legend>
+                <fieldset className="bg-gray-50 flex flex-wrap justify-between px-3 rounded-2xl relative -left-1">
+                    { mealTypes.map( item => (
+                        <MealTypeCard
+                            data={item}     
+                            isChosen={ item.name == query.mealType }                       
+                            key={item.name}
+                            clickEv={() => setQuery( setMealOption(query, item.name) ) } />
+                    )) }
+                </fieldset>
+            </div>
+                                            
+            <Button 
+                className="bg-red-500 rounded-3xl p-3 my-2 text-white w-full text-center"
+                text="Find me some recipes!"
+                type="submit">                    
+            </Button>
         </div>
     );
 }

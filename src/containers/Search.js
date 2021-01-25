@@ -3,11 +3,14 @@ import { QueryContext } from '../state/appContexts';
 import {setQueryTerm} from '../state/actions';
 import {useHistory} from 'react-router-dom';
 import SearchSettings from './SearchSettings';
+import Button from '../components/Button';
+import FeatherIcon from 'feather-icons-react';
+import {CSSTransition} from 'react-transition-group';
 
 function Search() {
 
-    const history = useHistory();
-
+    const routerHistory = useHistory();
+    
     const {query, setQuery} = React.useContext(QueryContext);
 
     const [expand, setExpand] = React.useState(false);
@@ -16,27 +19,40 @@ function Search() {
 
     function handleSubmit(e) {
         e.preventDefault();
+        setExpand( false );
         setQuery( setQueryTerm(query, tempTerm) );
-        history.push('/search');
+        routerHistory.push('/search');
     }
 
     return (
-        <form className="rounded-xl rounded-t-none shadow-lg py-6 px-8" onSubmit={ handleSubmit }>
-            <div className="flex">
+        <form 
+            onSubmit={ handleSubmit } 
+            className="rounded-xl rounded-t-none shadow-lg py-6 px-8">
+
+            <div className="flex justify-between">
                 <input 
-                    className="py-2 px-4 border border-gray-400 border-solid rounded-3xl"
+                    className="py-2 px-4 border border-gray-400 border-solid rounded-3xl flex-grow mr-2 focus:border-3 focus:border-red-500"
                     type="search" 
                     placeholder='Try "Pasta"'
                     onChange={ e => setTempTerm(e.target.value) } />
-
-                <button
-                    className="bg-red-500 rounded-3xl"
+                
+                <Button 
+                    className="bg-red-500 rounded-3xl w-10 h-10 flex items-center justify-center p-2" 
                     type="button"
-                    onClick={ () => setExpand( true ) }>
-                        . </button>
+                    clickEv={ () => setExpand( !expand ) }>
+                        <FeatherIcon icon="sliders" color="#fff " />
+                </Button>
             </div>
-            { expand && <SearchSettings /> }                            
 
+            <CSSTransition 
+                in={expand} 
+                timeout={100} 
+                classNames="expand">
+
+                <SearchSettings
+                    expand={expand} />                    
+
+            </CSSTransition>
         </form>
     )
 }

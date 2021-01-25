@@ -14,8 +14,18 @@ function setQueryTerm( query, str ) {
     return {...query, term: str};
 }
 
+function recipeTimeCalc( n ) {
+    if( n > 60 ) {
+        return `${Math.floor(n / 60)} - ${Math.ceil(n / 60)} hrs`;
+    }
+    else {
+        return `${n} mins`;
+    }
+}
+
 export { 
     toggleQueryOption,
     setMealOption,
-    setQueryTerm
+    setQueryTerm,
+    recipeTimeCalc
 };

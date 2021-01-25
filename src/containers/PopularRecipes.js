@@ -4,7 +4,7 @@ import RecipeCard from '../components/RecipeCard';
 function PopularRecipes(props) {    
         
     return (
-        <div className="py-6 px-8">
+        <div>
 
             <h2 className="text-2xl mb-6">Popular right now</h2>
 

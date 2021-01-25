@@ -1,7 +1,8 @@
 export default function Checkbox(props) {
     return (
         <label htmlFor={props.item.queryStr}>
-        <input 
+        <input
+            className="mr-1" 
             id={props.item.queryStr} 
             type="checkbox" 
             checked={props.item.value}

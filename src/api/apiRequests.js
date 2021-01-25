@@ -1,14 +1,22 @@
 const API_KEY = '1372edba263a4d10b79a8a8c46f412bf';
 const BASE_URL = `https://api.spoonacular.com`;
 
-//random search
-async function API_Random() {
-    let req = await fetch( `${BASE_URL}/recipes/random?apiKey=${API_KEY}&number=2` );
-    
-    checkIfError(req);
+let cacheRandom = null;
 
-    const data = await req.json();
-    return data.recipes;     
+//random search
+async function API_Random() {    
+    if( cacheRandom ) {
+        //return cached data
+        return cacheRandom;
+    }
+    else {
+        //fetch data and store to cache
+        let req = await fetch( `${BASE_URL}/recipes/random?apiKey=${API_KEY}&number=2` );
+        checkIfError(req);
+        const data = await req.json();
+        cacheRandom = data.recipes;     
+        return cacheRandom;        
+    }    
 }
 
 //complex search

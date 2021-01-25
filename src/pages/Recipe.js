@@ -1,23 +1,49 @@
 import React, { useEffect } from 'react';
+import Loader from '../components/Loader';
+import RecipeHeader from '../containers/RecipeHeader';
+import RecipeIngredients from '../containers/RecipeIngredients';
+import RecipeInstructions from '../containers/RecipeInstructions';
+import RecipeCredits from '../components/RecipeCredits';
 import { RecipeContext } from '../state/appContexts';
+import {sample} from '../state/initialStoreData'
 
 function Recipe() {
 
-    const { selectedRecipe } = React.useContext(RecipeContext);
+    const { selectedRecipe, setSelectedRecipe } = React.useContext(RecipeContext);
 
     const [isLoading, setIsLoading] = React.useState(true);
 
     useEffect( () => {
+        if( !( 'title' in selectedRecipe) ) {
+            setSelectedRecipe(sample)            
+        }        
         setIsLoading( selectedRecipe ? false : true );
     }, []);
 
+    /* async function getRecipeById() {
+        const data = await API_Get_Recipe();
+    } */
+
     return (
-        <div>
-            <h1>Some recipe</h1>
+        <div className="lg:container mx-auto py-6 px-8">
             { isLoading ? (
-                <p>Looking for it</p>
+                <Loader />
             ) : (
-                <p>We found it</p>
+                <>               
+                <RecipeHeader 
+                    data={selectedRecipe} />
+
+                <RecipeIngredients 
+                    ingredients={selectedRecipe.extendedIngredients}
+                    servings={selectedRecipe.servings} /> 
+
+                <RecipeInstructions
+                    data={selectedRecipe.instructions} /> 
+
+                <RecipeCredits 
+                    text={selectedRecipe.creditsText}
+                    license={selectedRecipe.license} />
+                </>                                                                
             )}
         </div>
     )
