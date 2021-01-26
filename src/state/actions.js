@@ -23,9 +23,21 @@ function recipeTimeCalc( n ) {
     }
 }
 
+function saveToLocalStorage( data ) {
+    let JSONData = JSON.stringify(data);
+    localStorage.setItem('rcptSavedRecipes', JSONData);
+}
+
+function readLocalStorage() {
+    let data = localStorage.getItem('rcptSavedRecipes');
+    return data ? JSON.parse(data) : [];
+}
+
 export { 
     toggleQueryOption,
     setMealOption,
     setQueryTerm,
-    recipeTimeCalc
+    recipeTimeCalc,
+    saveToLocalStorage,
+    readLocalStorage
 };

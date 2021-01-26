@@ -5,12 +5,7 @@ import RecipeSectionHeader from '../components/RecipeSectionHeader';
 export default function RecipeInstructions( {data} ) {
 
     const [expand, setExpand] = React.useState(true);
-
-    function parseData() {
-        const matchPattern = /<\S*>/gi;
-        return data.split( matchPattern );
-    }
-
+    
     function parseInstructions() {
         return data.map( type => {
             return type.steps.map( item => item.step );
@@ -18,7 +13,7 @@ export default function RecipeInstructions( {data} ) {
     }
  
     return (
-        <div className="my-3">
+        <div className="mb-3">
             
             <RecipeSectionHeader 
                 isOpen={expand}

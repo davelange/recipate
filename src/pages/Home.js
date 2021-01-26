@@ -2,8 +2,9 @@ import React from 'react';
 import SplashScreen from '../containers/SplashScreen';
 import PopularRecipes from '../containers/PopularRecipes';
 import {API_Random} from '../api/apiRequests';
+import SavedRecipes from '../containers/SavedRecipes';
 
-export default function Home() {
+export default function Home({savedRecipes}) {
 
     const [popularRecipes, setPopularRecipes] = React.useState([]);    
     const [isLoading, setIsLoading] = React.useState(true);
@@ -27,6 +28,9 @@ export default function Home() {
                 <>                
                 <PopularRecipes 
                     data={popularRecipes} />
+                    
+                <SavedRecipes
+                    savedRecipes={savedRecipes} />
                 </>                
             )}      
         </div>

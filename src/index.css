@@ -37,3 +37,24 @@
     max-height: 0; 
     transition: all 0.5s ease;
 }
+
+.toggle-saved-enter button {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .toggle-saved-enter-active button {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .toggle-saved-exit button {    
+    transform: scale(1);
+    opacity: 1;
+  }
+  .toggle-saved-exit-active button {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  .toggle-saved-enter-active button,
+  .toggle-saved-exit-active button {
+    transition: opacity 500ms, transform 300ms;
+  }

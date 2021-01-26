@@ -21,8 +21,8 @@ export default function RecipeSummary({ingredients, servings}) {
         return servings ? <p className="my-2 text-gray-500">{`For ${servings} servings`}</p> : '';
     }
 
-    const ingredientsOutput = () => (
-        <div className="my-3">   
+    return (
+        <div className="mb-3">   
              
             <RecipeSectionHeader 
                 isOpen={expand}
@@ -50,7 +50,5 @@ export default function RecipeSummary({ingredients, servings}) {
                 </CSSTransition>                
             </div>
         </div>
-    );
-
-    return ingredients ? ingredientsOutput() : <div></div>;
+    );    
 }
