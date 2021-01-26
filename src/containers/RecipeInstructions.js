@@ -11,6 +11,12 @@ export default function RecipeInstructions( {data} ) {
         return data.split( matchPattern );
     }
 
+    function parseInstructions() {
+        return data.map( type => {
+            return type.steps.map( item => item.step );
+        }).flat();
+    }
+ 
     return (
         <div className="my-3">
             
@@ -25,7 +31,11 @@ export default function RecipeInstructions( {data} ) {
                 classNames="expand">
                 
                 <ul className="overflow-hidden">
-                    { parseData().map( (item, i) => <li key={i} className="mb-3">{ item }</li>) }
+                    { parseInstructions().map( (item, i) => 
+                    <li key={i} className="mb-3">
+                        <span className="font-bold text-blue-600 mr-2">{i+1}</span>
+                        { item }</li>
+                    )}
                 </ul>                
             </CSSTransition>              
         </div>

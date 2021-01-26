@@ -10,8 +10,9 @@ export default function SearchResults(props) {
     const [isLoading, setIsLoading] = React.useState(true);
 
     React.useEffect( () => {
+        setIsLoading(true);
         getSearchResults();        
-    }, []);
+    }, [props.query]);
 
     async function getSearchResults() {
         const data = await API_ComplexSearch(props.query);

@@ -10,7 +10,9 @@ export default function RecipeCard(props) {
     const history = useHistory();
     
     function handleClick() {
-        setSelectedRecipe(props.data)
+        setSelectedRecipe({
+            id: props.data.id            
+        });
         history.push(`/recipe/${props.data.id}`);
     }
 

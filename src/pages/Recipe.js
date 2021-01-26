@@ -7,7 +7,7 @@ import RecipeCredits from '../components/RecipeCredits';
 import { RecipeContext } from '../state/appContexts';
 import {sample} from '../state/initialStoreData'
 import { API_Get_Recipe } from '../api/apiRequests';
-import { useLocation, Route } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function Recipe( props ) {
 
@@ -18,12 +18,7 @@ function Recipe( props ) {
     const location = useLocation();    
 
     useEffect( () => {
-        if( !( 'title' in selectedRecipe) ) {
-            getRecipeById();            
-        }                
-        else {
-            setIsLoading( selectedRecipe ? false : true );
-        }
+        getRecipeById();
     }, []);
 
     async function getRecipeById() {
@@ -33,7 +28,7 @@ function Recipe( props ) {
     } 
 
     function getId() {
-        return location.pathname.split('/').reverse()[0];
+        return selectedRecipe.id ? selectedRecipe.id : location.pathname.split('/').reverse()[0];
     }
 
     /* function addToSavedRecipes() {
@@ -56,7 +51,7 @@ function Recipe( props ) {
                     servings={selectedRecipe.servings} /> 
 
                 <RecipeInstructions
-                    data={selectedRecipe.instructions} /> 
+                    data={selectedRecipe.analyzedInstructions} /> 
 
                 <RecipeCredits 
                     text={selectedRecipe.creditsText}
