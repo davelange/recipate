@@ -10,7 +10,7 @@ import Search from './containers/Search';
 
 function App() {
   const [query, setQuery] = React.useState(store.query);
-  const [savedRecipes, setSavedRecipes] = React.useState(store.savedRecipes);
+  const [savedRecipes, setSavedRecipes] = React.useState([]);
   const [selectedRecipe, setSelectedRecipe] = React.useState({});
 
   return (
@@ -29,14 +29,17 @@ function App() {
             </Route>
 
             <Route path="/search">
-              <SearchResults                 
+              <SearchResults         
+                query={query}        
                 selectRecipe={setSelectedRecipe} />
             </Route>
 
             <Route path="/recipe">
-              <Recipe />
+              <Recipe
+                savedRecipes={ savedRecipes }
+                setSavedRecipes={ setSavedRecipes } />
             </Route>
-            
+
           </Switch>
         </BrowserRouter>
       </RecipeContext.Provider>

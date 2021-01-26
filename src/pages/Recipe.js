@@ -9,7 +9,7 @@ import {sample} from '../state/initialStoreData'
 import { API_Get_Recipe } from '../api/apiRequests';
 import { useLocation, Route } from 'react-router-dom';
 
-function Recipe() {
+function Recipe( props ) {
 
     const { selectedRecipe, setSelectedRecipe } = React.useContext(RecipeContext);
 
@@ -36,6 +36,10 @@ function Recipe() {
         return location.pathname.split('/').reverse()[0];
     }
 
+    /* function addToSavedRecipes() {
+        props.setSavedRecipes( selectedRecipe.id )
+    } */
+
     return (
         <div className="lg:container mx-auto py-6 px-8">
             { isLoading ? (
@@ -44,6 +48,8 @@ function Recipe() {
                 <>               
                 <RecipeHeader 
                     data={selectedRecipe} />
+
+                {/* <button onClick={() => addToSavedRecipes() }>Save</button> */}
 
                 <RecipeIngredients 
                     ingredients={selectedRecipe.extendedIngredients}
