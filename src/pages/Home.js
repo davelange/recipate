@@ -1,5 +1,6 @@
 import React from 'react';
 import SplashScreen from '../containers/SplashScreen';
+import Loader from '../components/Loader';
 import PopularRecipes from '../containers/PopularRecipes';
 import {API_Random} from '../api/apiRequests';
 import SavedRecipes from '../containers/SavedRecipes';
@@ -23,7 +24,7 @@ export default function Home({savedRecipes}) {
         <div className="lg:container mx-auto py-6 px-8">
 
             { isLoading ? (
-                <SplashScreen />
+                <Loader />
             ) : (
                 <>                
                 <PopularRecipes 
