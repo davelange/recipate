@@ -4,7 +4,7 @@ export default function SavedRecipes({savedRecipes}) {
 
     return (
         <div>
-            <h2 className="text-2xl mb-6">Saved recipes</h2>
+            <h2 className="text-2xl mb-2">Saved recipes</h2>
             
             { savedRecipes.length ? (
                 savedRecipes.map( item => 

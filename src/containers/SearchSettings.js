@@ -15,7 +15,7 @@ function SearchSettings() {
 
             <div className="my-5">
                 <legend className="my-2 text-gray-400">Settings</legend>
-                <fieldset className="flex justify-between align-center">
+                <fieldset className="flex justify-between align-center md:justify-start">
                     { query.options.map( (item, i) => (
                     <Checkbox 
                         item={item} 

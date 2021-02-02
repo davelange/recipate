@@ -5,7 +5,7 @@ import RecipeSectionHeader from '../components/RecipeSectionHeader';
 
 export default function RecipeSummary({ingredients, servings}) {
     
-    const [expand, setExpand] = React.useState(false);
+    const [expand, setExpand] = React.useState(true);
 
     const quantityStr = (data) => {
         return data.meta.includes("to taste") ? "To taste" : `${data.amount} ${data.unit}`;            
@@ -35,7 +35,7 @@ export default function RecipeSummary({ingredients, servings}) {
                     timeout={100} 
                     classNames="expand">
                     
-                    <div className="expand-collapse overflow-hidden">
+                    <div className="expand-collapse overflow-hidden lg:w-1/3">
                         { servingsText() }
                         <ul>
                             {

@@ -25,9 +25,9 @@ export default function RecipeInstructions( {data} ) {
                 timeout={100} 
                 classNames="expand">
                 
-                <ul className="overflow-hidden">
+                <ul className="overflow-hidden lg:w-8/12">
                     { parseInstructions().map( (item, i) => 
-                    <li key={i} className="mb-3">
+                    <li key={i} className="mb-3 text-gray-800">
                         <span className="font-bold text-blue-600 mr-2">{i+1}</span>
                         { item }</li>
                     )}

@@ -47,7 +47,8 @@ function Recipe( props ) {
                 title: selectedRecipe.title,
                 image: selectedRecipe.image,
                 readyInMinutes: selectedRecipe.readyInMinutes,
-                diets: selectedRecipe.diets
+                diets: selectedRecipe.diets,
+                summary: selectedRecipe.summary,
             }];
         }
         else {

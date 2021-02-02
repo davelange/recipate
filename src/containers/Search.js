@@ -1,7 +1,7 @@
 import React from 'react';
 import { QueryContext } from '../state/appContexts';
 import {setQueryTerm} from '../state/actions';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import SearchSettings from './SearchSettings';
 import Button from '../components/Button';
 import FeatherIcon from 'feather-icons-react';
@@ -27,9 +27,14 @@ function Search() {
     return (
         <form 
             onSubmit={ handleSubmit } 
-            className="rounded-xl rounded-t-none shadow-lg py-6 px-8">
+            className="rounded-xl rounded-t-none shadow-lg py-6 px-8 lg:container mx-auto">
 
-            <div className="flex justify-between">
+            <div className="flex justify-between items-center">
+                
+                <Link to="/" className="font-bold text-red-500 mr-8 hidden md:block">
+                    recipate
+                </Link>
+
                 <input 
                     className="py-2 px-4 border border-gray-400 border-solid rounded-3xl flex-grow mr-2 focus:border-3 focus:border-red-500"
                     type="search" 

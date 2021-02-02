@@ -4,6 +4,8 @@ import FeatherIcon from 'feather-icons-react';
 
 export default function SaveRecipe(props) {
 
+    const classNames = 'py-2 text-red-500 rounded-lg flex items-center ml-auto lg:ml-0 lg:mr-auto lg:my-4';
+
     return (
         <SwitchTransition mode="out-in">
             <CSSTransition
@@ -15,13 +17,13 @@ export default function SaveRecipe(props) {
                 { props.saved ? (
                     <Button
                         clickEv={() => props.setSaved( false )}                                                            
-                        className="py-2 px-2 text-red-500 rounded-lg flex items-center ml-auto">
+                        className={classNames}>
                         <span>Remove from saved</span>
                     </Button>
                 ) : (                    
                     <Button
                         clickEv={() => props.setSaved( true )}                                                   
-                        className="py-2 px-2 text-red-500 rounded-lg flex items-center ml-auto">
+                        className={classNames}>
                             <span className="mr-1">Save</span>
                             <FeatherIcon icon="heart" height="20" width="20"/>
                     </Button>

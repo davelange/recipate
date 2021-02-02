@@ -33,6 +33,8 @@ function readLocalStorage() {
     return data ? JSON.parse(data) : [];
 }
 
+
+
 export { 
     toggleQueryOption,
     setMealOption,
