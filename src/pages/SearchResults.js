@@ -27,6 +27,7 @@ export default function SearchResults(props) {
                 :
                 <>
                 <ResultsDisplay
+                    title="Here's what we found"
                     results={searchResults.results}
                     selectRecipe={props.selectRecipe} />
                 </>

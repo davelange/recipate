@@ -16,7 +16,7 @@ function setQueryTerm( query, str ) {
 
 function recipeTimeCalc( n ) {
     if( n > 60 ) {
-        return `${Math.floor(n / 60)} - ${Math.ceil(n / 60)} hrs`;
+        return (n%60) ? `${Math.floor(n / 60)} - ${Math.ceil(n / 60)} hrs` : `${n/60} hrs`;
     }
     else {
         return `${n} mins`;

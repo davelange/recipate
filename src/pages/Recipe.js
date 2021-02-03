@@ -38,7 +38,7 @@ function Recipe( {savedRecipes, setSavedRecipes} ) {
     }
 
     function addToSavedRecipes( add ) {        
-        let newData = processSavedRecipes( savedRecipes, selectedRecipe, add );
+        let newData = processSavedRecipes( savedRecipes, selectedRecipe, 'add' );
         setSavedRecipes( newData );
         saveToLocalStorage( newData );
     } 
@@ -65,7 +65,7 @@ function Recipe( {savedRecipes, setSavedRecipes} ) {
 
                 <RecipeCredits 
                     text={selectedRecipe.creditsText}
-                    license={selectedRecipe.license} />
+                    sourceUrl={selectedRecipe.sourceUrl} />
                 </>                                                                
             )}
         </div>

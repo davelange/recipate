@@ -3,10 +3,10 @@ import RecipeCard from "../components/RecipeCard";
 export function ResultsDisplay(props) {        
 
     const resultsHeader = props.results.length ? 
-        "Here's what we found" : "We couldn't find any recipes";
+        props.title : "We couldn't find any recipes";
 
     return (
-        <div>
+        <div className="mt-2">
             
             <h2 className="text-2xl mb-2">{ resultsHeader }</h2>
                         

@@ -2,12 +2,12 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { store } from './state/initialStoreData';
 import { RecipeContext } from './state/appContexts';
-//import { QueryContext } from './state/appContexts';
 import { readLocalStorage } from './state/actions';
 import Home from './pages/Home';
 import SearchResults from './pages/SearchResults';
 import Recipe from './pages/Recipe';
 import Search from './containers/Search';
+import Footer from './components/Footer';
 
 function App() {
   const [query, setQuery] = React.useState(store.query);
@@ -45,6 +45,7 @@ function App() {
           </Switch>
         </BrowserRouter>
       </RecipeContext.Provider>
+      <Footer />
     </div>
   );
 }

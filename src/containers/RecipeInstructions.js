@@ -1,5 +1,4 @@
 import React from 'react';
-import {CSSTransition} from 'react-transition-group';
 import RecipeSectionHeader from '../components/RecipeSectionHeader';
 
 export default function RecipeInstructions( {data} ) {
@@ -20,19 +19,16 @@ export default function RecipeInstructions( {data} ) {
                 clickEv={() => setExpand( !expand )}
                 name="Instructions" />    
 
-            <CSSTransition 
-                in={expand} 
-                timeout={100} 
-                classNames="expand">
+                { expand && (
+                    <ul className="overflow-hidden lg:w-8/12">
+                        { parseInstructions().map( (item, i) => 
+                        <li key={i} className="mb-3 text-gray-800">
+                            <span className="font-bold text-blue-600 mr-2">{i+1}</span>
+                            { item }</li>
+                        )}
+                    </ul>                
+                )}
                 
-                <ul className="overflow-hidden lg:w-8/12">
-                    { parseInstructions().map( (item, i) => 
-                    <li key={i} className="mb-3 text-gray-800">
-                        <span className="font-bold text-blue-600 mr-2">{i+1}</span>
-                        { item }</li>
-                    )}
-                </ul>                
-            </CSSTransition>              
         </div>
     )
 }

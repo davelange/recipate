@@ -1,5 +1,4 @@
 import React from 'react';
-import { QueryContext } from '../state/appContexts';
 import {setQueryTerm} from '../state/actions';
 import {useHistory, Link} from 'react-router-dom';
 import {CSSTransition} from 'react-transition-group';
@@ -11,10 +10,6 @@ function Search({ query, setQuery}) {
 
     const routerHistory = useHistory();
     
-    //const {query, setQuery} = React.useContext(QueryContext);
-
-    console.log('rerender Search')
-
     const [expand, setExpand] = React.useState(false);
 
     const [tempTerm, setTempTerm] = React.useState('');

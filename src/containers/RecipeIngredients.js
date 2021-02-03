@@ -1,6 +1,5 @@
 import React from 'react';
 import Ingredient from '../components/Ingredient';
-import {CSSTransition} from 'react-transition-group';
 import RecipeSectionHeader from '../components/RecipeSectionHeader';
 
 export default function RecipeSummary({ingredients, servings}) {
@@ -8,7 +7,12 @@ export default function RecipeSummary({ingredients, servings}) {
     const [expand, setExpand] = React.useState(true);
 
     const quantityStr = (data) => {
-        return data.meta.includes("to taste") ? "To taste" : `${data.amount} ${data.unit}`;            
+        if( data.meta.includes("to taste") ) {
+            return 'To taste';
+        }
+        else {            
+            return Number.isInteger(data.amount) ? `${data.amount} ${data.unit}` : `${data.amount.toFixed(2)} ${data.unit}`;
+        }        
     }
 
     const ingredientName = (str) => {
@@ -29,13 +33,8 @@ export default function RecipeSummary({ingredients, servings}) {
                 clickEv={() => setExpand( !expand )}
                 name="Ingredients" />    
 
-            <div >
-                <CSSTransition 
-                    in={expand} 
-                    timeout={100} 
-                    classNames="expand">
-                    
-                    <div className="expand-collapse overflow-hidden lg:w-1/3">
+                { expand && (
+                    <div className="lg:w-1/3">
                         { servingsText() }
                         <ul>
                             {
@@ -46,9 +45,8 @@ export default function RecipeSummary({ingredients, servings}) {
                                     quantity={ quantityStr(item) } /> ) 
                             }
                         </ul>
-                    </div>                
-                </CSSTransition>                
-            </div>
+                    </div> 
+                )}                
         </div>
     );    
 }
