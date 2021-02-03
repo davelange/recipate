@@ -4,7 +4,7 @@ import FeatherIcon from 'feather-icons-react';
 
 export default function SaveRecipe(props) {
 
-    const classNames = 'py-2 text-red-500 rounded-lg flex items-center ml-auto lg:ml-0 lg:mr-auto lg:my-4';
+    const classNames = 'py-2 text-red-500 rounded-lg flex items-center ml-auto lg:ml-0 lg:mr-auto lg:mt-4';
 
     return (
         <SwitchTransition mode="out-in">

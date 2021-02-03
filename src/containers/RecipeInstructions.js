@@ -1,18 +1,13 @@
 import React from 'react';
+import {parseInstructions} from '../state/actions';
 import RecipeSectionHeader from '../components/RecipeSectionHeader';
 
 export default function RecipeInstructions( {data} ) {
 
-    const [expand, setExpand] = React.useState(true);
-    
-    function parseInstructions() {
-        return data.map( type => {
-            return type.steps.map( item => item.step );
-        }).flat();
-    }
+    const [expand, setExpand] = React.useState(true);    
  
     return (
-        <div className="mb-3">
+        <div className="mb-10">
             
             <RecipeSectionHeader 
                 isOpen={expand}
@@ -20,8 +15,8 @@ export default function RecipeInstructions( {data} ) {
                 name="Instructions" />    
 
                 { expand && (
-                    <ul className="overflow-hidden lg:w-8/12">
-                        { parseInstructions().map( (item, i) => 
+                    <ul className="lg:w-8/12">
+                        { parseInstructions(data).map( (item, i) => 
                         <li key={i} className="mb-3 text-gray-800">
                             <span className="font-bold text-blue-600 mr-2">{i+1}</span>
                             { item }</li>

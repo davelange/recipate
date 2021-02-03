@@ -17,7 +17,8 @@ function Search({ query, setQuery}) {
     function handleSubmit(e) {
         e.preventDefault();
         setExpand( false );
-        setQuery( setQueryTerm(query, tempTerm) );
+        let newQuery = setQueryTerm(query, tempTerm);
+        setQuery( newQuery );
         routerHistory.push('/search');
     }
 
