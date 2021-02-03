@@ -3,13 +3,10 @@ import Button from '../components/Button';
 import Checkbox from '../components/Checkbox';
 import MealTypeCard from '../components/MealTypeCard';
 import {toggleQueryOption, setMealOption} from '../state/actions';
-import {QueryContext} from '../state/appContexts';
 import {mealTypes} from '../state/initialStoreData';
 
-function SearchSettings() {
+function SearchSettings({ query, setQuery}) {
     
-    const {query, setQuery} = React.useContext(QueryContext);        
-
     return (
         <div className="expand-collapse overflow-hidden">           
 
@@ -31,7 +28,7 @@ function SearchSettings() {
                     { mealTypes.map( item => (
                         <MealTypeCard
                             data={item}     
-                            isChosen={ item.name == query.mealType }                       
+                            isChosen={ item.name === query.mealType }                       
                             key={item.name}
                             clickEv={() => setQuery( setMealOption(query, item.name) ) } />
                     )) }

@@ -13,7 +13,7 @@ export default function RecipeSummary({ingredients, servings}) {
 
     const ingredientName = (str) => {
         return str.split(' ').map( item => 
-            item.split('').map( (c, i) => i == 0 ? c.toUpperCase() : c ).join('')
+            item.split('').map( (c, i) => i === 0 ? c.toUpperCase() : c ).join('')
         ).join(' ')
     }
 

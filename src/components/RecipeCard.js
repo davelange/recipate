@@ -22,9 +22,9 @@ export default function RecipeCard(props) {
     }
 
     return (
-        <a className="flex my-4 items-start cursor-pointer box-border lg:w-1/2 lg:my-6 hover:text-red-500 focus-within:text-red-500" 
+        <div className="flex my-4 items-start cursor-pointer box-border lg:w-1/2 lg:my-6 hover:text-red-500 focus-within:text-red-500" 
              onClick={ () => handleClick() }
-             tabindex="0">
+             tabIndex="0">
 
             <img className="w-2/5 rounded-lg" src={props.data.image} alt={props.data.title} />
 
@@ -36,6 +36,6 @@ export default function RecipeCard(props) {
                     limit={2} 
                     recipe={props.data} />
             </div>            
-        </a>
+        </div>
     )
 }

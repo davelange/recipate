@@ -1,6 +1,6 @@
 function toggleQueryOption( query, toggled ) {
     let newOptions = query.options.map( (item, i) => { 
-        if( i == toggled ) item.value = !item.value;
+        if( i === toggled ) item.value = !item.value;
         return item;
     })  
     return {...query, options: newOptions};
@@ -23,6 +23,26 @@ function recipeTimeCalc( n ) {
     }
 }
 
+function processSavedRecipes( current, recipe, action ) {
+    switch( action ) {
+        case 'add' :
+            return [...current, {
+                id: recipe.id,
+                title: recipe.title,
+                image: recipe.image,
+                readyInMinutes: recipe.readyInMinutes,
+                diets: recipe.diets,
+                summary: recipe.summary,
+            }];
+
+        case 'remove':
+            return current.filter( item => item.id !== recipe.id );
+
+        default:
+            return current;
+    }
+}
+
 function saveToLocalStorage( data ) {
     let JSONData = JSON.stringify(data);
     localStorage.setItem('rcptSavedRecipes', JSONData);
@@ -33,13 +53,12 @@ function readLocalStorage() {
     return data ? JSON.parse(data) : [];
 }
 
-
-
 export { 
     toggleQueryOption,
     setMealOption,
     setQueryTerm,
     recipeTimeCalc,
+    processSavedRecipes,
     saveToLocalStorage,
     readLocalStorage
 };

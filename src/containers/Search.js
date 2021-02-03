@@ -2,16 +2,18 @@ import React from 'react';
 import { QueryContext } from '../state/appContexts';
 import {setQueryTerm} from '../state/actions';
 import {useHistory, Link} from 'react-router-dom';
+import {CSSTransition} from 'react-transition-group';
 import SearchSettings from './SearchSettings';
 import Button from '../components/Button';
 import FeatherIcon from 'feather-icons-react';
-import {CSSTransition} from 'react-transition-group';
 
-function Search() {
+function Search({ query, setQuery}) {
 
     const routerHistory = useHistory();
     
-    const {query, setQuery} = React.useContext(QueryContext);
+    //const {query, setQuery} = React.useContext(QueryContext);
+
+    console.log('rerender Search')
 
     const [expand, setExpand] = React.useState(false);
 
@@ -55,6 +57,8 @@ function Search() {
                 classNames="expand">
 
                 <SearchSettings
+                    query={query}
+                    setQuery={setQuery}
                     expand={expand} />                    
 
             </CSSTransition>

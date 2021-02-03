@@ -1,6 +1,6 @@
 export default function MealTypeCard(props) {
     return (
-        <button type="button"  className="w-1/2 lg:w-1/3 my-3 flex items-center cursor-pointer focus:text-red-500 focus:outline-none" onClick={props.clickEv}>            
+        <button type="button"  className="w-1/2 lg:w-1/3 my-3 flex items-center cursor-pointer focus:text-red-500 hover:text-red-500 focus:outline-none" onClick={props.clickEv}>            
                 
             <div className="w-2/5">
                 <picture className="picture-shadow h-14 lg:h-auto">

@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { store } from './state/initialStoreData';
 import { RecipeContext } from './state/appContexts';
-import { QueryContext } from './state/appContexts';
+//import { QueryContext } from './state/appContexts';
 import { readLocalStorage } from './state/actions';
 import Home from './pages/Home';
 import SearchResults from './pages/SearchResults';
@@ -19,9 +19,9 @@ function App() {
       <RecipeContext.Provider value={{ selectedRecipe, setSelectedRecipe}} >
         <BrowserRouter>
 
-          <QueryContext.Provider value={{query, setQuery}}>
-              <Search />                                            
-          </QueryContext.Provider>        
+          <Search
+            query={query}
+            setQuery={setQuery} />    
           
           <Switch>          
             

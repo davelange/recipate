@@ -3,7 +3,7 @@ import RecipeLabel from '../components/RecipeLabel';
 import FeatherIcon from 'feather-icons-react';
 
 
-export default function({limit, recipe}) {
+export default function LabelDisplay({limit, recipe}) {
 
     const limitedDiets = () => limit ? recipe.diets.slice(0, limit) : recipe.diets;
 

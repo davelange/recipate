@@ -22,12 +22,12 @@ let cache = {
     },
 
     getRecipe( id ) {
-        return this.recipes.find( item => item.id == id );
+        return this.recipes.find( item => item.id === id );
     },
 
     addRecipe( data ) {
         this.recipes.push(data);
-        if( this.recipes.length == 10 ) {
+        if( this.recipes.length === 10 ) {
             this.recipes.shift();
         }
     }

@@ -5,25 +5,24 @@ import Loader from '../components/Loader';
 
 export default function SearchResults(props) {
 
-    const [searchResults, setSearchResults] = React.useState({});
+    const [searchResults, setSearchResults] = React.useState(false);
 
-    const [isLoading, setIsLoading] = React.useState(true);
-
-    React.useEffect( () => {
-        setIsLoading(true);
+    React.useEffect( () => {        
         getSearchResults();        
     }, [props.query]);
 
     async function getSearchResults() {
         const data = await API_ComplexSearch(props.query);
-        setSearchResults( data );
-        setIsLoading(false);
+        setSearchResults( data );        
+    }
+
+    function isLoading() {
+        return !searchResults;
     }
 
     return (
         <div className="lg:container mx-auto py-6 px-8">            
-
-            { isLoading ? 
+            { isLoading() ? 
                 <Loader />                
                 :
                 <>
@@ -32,7 +31,6 @@ export default function SearchResults(props) {
                     selectRecipe={props.selectRecipe} />
                 </>
             }
-
         </div>
     )
 }
