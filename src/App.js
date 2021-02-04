@@ -15,7 +15,8 @@ function App() {
   const [selectedRecipe, setSelectedRecipe] = React.useState({});
 
   return (
-    <div className="App">      
+    <div className="App flex flex-col h-full">    
+      <div className="flex-grow">
       <RecipeContext.Provider value={{ selectedRecipe, setSelectedRecipe}} >
         <BrowserRouter>
 
@@ -45,6 +46,7 @@ function App() {
           </Switch>
         </BrowserRouter>
       </RecipeContext.Provider>
+      </div>  
       <Footer />
     </div>
   );

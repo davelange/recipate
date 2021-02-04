@@ -29,11 +29,13 @@ export default function Home({savedRecipes}) {
                 <>                
                 <ResultsDisplay 
                     results={popularRecipes}
-                    title="Popular right now" />
+                    title="Popular right now"
+                    none="Something went wrong :(" />
                     
                 <ResultsDisplay
                     results={savedRecipes}
-                    title="Saved recipes" />
+                    title="Saved recipes"
+                    none="You haven't saved any recipes yet." />
                 </>                
             )}      
         </div>

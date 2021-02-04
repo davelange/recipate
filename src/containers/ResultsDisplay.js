@@ -2,16 +2,13 @@ import RecipeCard from "../components/RecipeCard";
 
 export function ResultsDisplay(props) {        
 
-    const resultsHeader = props.results.length ? 
-        props.title : "We couldn't find any recipes";
-
     return (
-        <div className="mt-2">
+        <div className="mt-2 lg:mt-4">
             
-            <h2 className="text-2xl mb-2">{ resultsHeader }</h2>
+            <h2 className="text-2xl mb-2">{ props.title }</h2>
                         
             { !props.results.length ? (
-                <h2>Try something else!</h2>
+                <p class="text-gray-500">{ props.none }</p>
             ) : 
             <>
             <div className="flex flex-wrap">
