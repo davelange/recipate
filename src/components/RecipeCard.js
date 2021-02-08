@@ -1,6 +1,7 @@
 import React from 'react';
 import {RecipeContext} from '../state/appContexts';
 import {useHistory} from 'react-router-dom';
+import {parseSummary} from '../state/actions';
 import LabelDisplay from '../containers/LabelDisplay';
 
 export default function RecipeCard(props) {
@@ -16,13 +17,8 @@ export default function RecipeCard(props) {
         history.push(`/recipe/${props.data.id}`);
     }
 
-    function parseSummary(str, limit) {
-        const match = /<\S*>/gi;
-        return  str.replace(match, '').split(' ').filter( (item, i) => i < limit ).join(' ');        
-    }
-
     return (
-        <div className="flex my-4 items-start cursor-pointer box-border lg:w-1/2 lg:my-6 hover:text-red-500 focus-within:text-red-500" 
+        <div className="flex my-4 items-start cursor-pointer box-border lg:w-1/2 lg:pr-4 lg:my-6 hover:text-red-500 focus-within:text-red-500" 
              onClick={ () => handleClick() }
              tabIndex="0">
             

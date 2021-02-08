@@ -8,16 +8,17 @@ import RecipeHeader from '../containers/RecipeHeader';
 import RecipeIngredients from '../containers/RecipeIngredients';
 import RecipeInstructions from '../containers/RecipeInstructions';
 import Loader from '../components/Loader';
-import RecipeCredits from '../components/RecipeCredits';
+import AboutRecipe from '../components/AboutRecipe';
 
 function Recipe( {savedRecipes, setSavedRecipes} ) {
 
     const { selectedRecipe, setSelectedRecipe } = React.useContext(RecipeContext);
 
     const location = useLocation();            
-
-    useEffect( () => {                               
-        getRecipeById();            
+    
+    useEffect( () => {                                       
+        getRecipeById();           
+        // eslint-disable-next-line 
     }, []);
 
     async function getRecipeById() {
@@ -49,23 +50,27 @@ function Recipe( {savedRecipes, setSavedRecipes} ) {
                 <Loader />
             ) : (
                 <>               
-                <RecipeHeader 
-                    data={selectedRecipe} />
-                
-                <SaveRecipe 
-                    saved={ isSaved() } 
-                    setSaved={ addToSavedRecipes }/>
-    
-                <RecipeIngredients 
-                    ingredients={selectedRecipe.extendedIngredients}
-                    servings={selectedRecipe.servings} /> 
+                <div className="lg:w-3/5 mx-auto">
 
-                <RecipeInstructions
-                    data={selectedRecipe.analyzedInstructions} /> 
+                    <RecipeHeader 
+                        data={selectedRecipe} />
+                    
+                    <SaveRecipe 
+                        saved={ isSaved() } 
+                        setSaved={ addToSavedRecipes }/>            
+        
+                    <RecipeIngredients 
+                        ingredients={selectedRecipe.extendedIngredients}
+                        servings={selectedRecipe.servings} /> 
 
-                <RecipeCredits 
-                    text={selectedRecipe.creditsText}
-                    sourceUrl={selectedRecipe.sourceUrl} />
+                    <RecipeInstructions
+                        data={selectedRecipe.analyzedInstructions} />                                 
+
+                    <AboutRecipe
+                        summary={selectedRecipe.summary}
+                        text={selectedRecipe.creditsText}
+                        sourceUrl={selectedRecipe.sourceUrl} />                    
+                </div>
                 </>                                                                
             )}
         </div>

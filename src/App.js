@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { store } from './state/initialStoreData';
 import { RecipeContext } from './state/appContexts';
 import { readLocalStorage } from './state/actions';
 import Home from './pages/Home';
@@ -10,7 +9,7 @@ import Search from './containers/Search';
 import Footer from './components/Footer';
 
 function App() {
-  const [query, setQuery] = React.useState(store.query);
+  const [query, setQuery] = React.useState({});
   const [savedRecipes, setSavedRecipes] = React.useState( readLocalStorage() );
   const [selectedRecipe, setSelectedRecipe] = React.useState({});
 
@@ -20,8 +19,7 @@ function App() {
       <RecipeContext.Provider value={{ selectedRecipe, setSelectedRecipe}} >
         <BrowserRouter>
 
-          <Search
-            query={query}
+          <Search            
             setQuery={setQuery} />    
           
           <Switch>          

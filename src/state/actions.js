@@ -1,22 +1,3 @@
-//toggle options in query object
-function toggleQueryOption( query, toggled ) {
-    let newOptions = query.options.map( (item, i) => { 
-        if( i === toggled ) item.value = !item.value;
-        return item;
-    })  
-    return {...query, options: newOptions};
-}
-
-//set option in query object
-function setMealOption( query, selected ) {
-    return {...query, mealType: selected};
-}
-
-//set search term in query object
-function setQueryTerm( query, str ) {    
-    return {...query, term: str};
-}
-
 //create time estimate str
 function recipeTimeCalc( n ) {
     if( n > 60 ) {
@@ -49,6 +30,12 @@ function parseIngredientQuantity(data) {
     else {            
         return Number.isInteger(data.amount) ? `${data.amount} ${data.unit}` : `${data.amount.toFixed(2)} ${data.unit}`;
     }   
+}
+
+//parse summary
+function parseSummary(str, limit) {    
+    const match = /<(.*?)>/gi;
+    return  str.replace(match, '').split(' ').filter( (item, i) => i < limit ).join(' ');        
 }
 
 //add or remove saved recipes
@@ -84,15 +71,13 @@ function readLocalStorage() {
     return data ? JSON.parse(data) : [];
 }
 
-export { 
-    toggleQueryOption,
-    setMealOption,
-    setQueryTerm,
+export {     
     recipeTimeCalc,
     processSavedRecipes,
     saveToLocalStorage,
     readLocalStorage,
     parseIngredientName,
     parseIngredientQuantity,
-    parseInstructions
+    parseInstructions,
+    parseSummary,
 };

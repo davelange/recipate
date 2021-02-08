@@ -22,33 +22,11 @@ import snack_wp_sm from '../assets/img/snack-sm.webp';
 import snack_wp_m from '../assets/img/snack-m.webp';
 import snack_png_m from '../assets/img/snack-m.png';
 
-
-const store = {
-    query: {
-        term: '',
-        options: [
-            {
-                name: 'Vegan',
-                queryStr: 'isVegan',
-                value: false
-          
-            },
-            {
-                name: 'Vegetarian',
-                queryStr: 'isVegetarian',
-                value: false
-            },
-            {
-                name: 'Gluten Free',
-                queryStr: 'glutenFree',
-                value: false
-            }
-        ],
-        mealType: ''
-    },
-    popularRecipes: [],
-    savedRecipes: []    
-}
+const options = [
+    'Vegan',
+    'Vegetarian',
+    'Gluten free'
+]
 
 const mealTypes = [
     {
@@ -107,4 +85,7 @@ const mealTypes = [
     }
 ];
 
-export {store, mealTypes};
+export {    
+    mealTypes,
+    options
+};

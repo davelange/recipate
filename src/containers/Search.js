@@ -1,25 +1,32 @@
 import React from 'react';
-import {setQueryTerm} from '../state/actions';
 import {useHistory, Link} from 'react-router-dom';
 import {CSSTransition} from 'react-transition-group';
 import SearchSettings from './SearchSettings';
 import Button from '../components/Button';
 import FeatherIcon from 'feather-icons-react';
 
-function Search({ query, setQuery}) {
+function Search({ setQuery}) {
 
     const routerHistory = useHistory();
     
     const [expand, setExpand] = React.useState(false);
 
-    const [tempTerm, setTempTerm] = React.useState('');
+    const [tempQuery, setTempQuery] = React.useState({
+        term: '',
+        options: [],
+        mealType: ''
+    });    
 
     function handleSubmit(e) {
         e.preventDefault();
         setExpand( false );
-        let newQuery = setQueryTerm(query, tempTerm);
-        setQuery( newQuery );
+        setQuery( tempQuery );        
         routerHistory.push('/search');
+    }
+
+    function setQueryProp( prop, val ) {        
+        let newQuery = {...tempQuery, [prop]: val};
+        setTempQuery( newQuery );
     }
 
     return (
@@ -37,7 +44,7 @@ function Search({ query, setQuery}) {
                     className="py-2 px-4 border border-gray-400 border-solid rounded-3xl flex-grow mr-2 focus:border-3 focus:border-red-500"
                     type="search" 
                     placeholder='Try "Pasta"'
-                    onChange={ e => setTempTerm(e.target.value) } />
+                    onChange={ e => setQueryProp('term', e.target.value) } />
                 
                 <Button 
                     className="bg-red-500 rounded-3xl w-10 h-10 flex items-center justify-center p-2" 
@@ -53,8 +60,8 @@ function Search({ query, setQuery}) {
                 classNames="expand">
 
                 <SearchSettings
-                    query={query}
-                    setQuery={setQuery}
+                    tempQuery ={tempQuery}
+                    setQueryProp={setQueryProp}
                     expand={expand} />                    
 
             </CSSTransition>

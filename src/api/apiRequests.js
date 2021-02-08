@@ -81,14 +81,10 @@ function buildComplexQueryURL(params) {
 
     if( params.mealType ) {
         URL += `&type=${encodeURIComponent(params.mealType)}`
-    }
+    }    
 
-    let diet = params.options
-        .filter( opt => opt.value )
-        .map( opt => encodeURIComponent(opt.name) )
-        .join(',');
-
-    if( diet ) {
+    if( params.options.length ) {
+        let diet = params.options.map( opt => encodeURIComponent(opt) ).join(',');
         URL += `&diet=${diet}`;
     }
 

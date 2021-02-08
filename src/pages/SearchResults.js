@@ -7,8 +7,11 @@ export default function SearchResults(props) {
 
     const [searchResults, setSearchResults] = React.useState(false);
 
+    console.log('RERENDER SEARCH RESULTS')
+
     React.useEffect( () => {        
-        getSearchResults();        
+        getSearchResults();    
+        // eslint-disable-next-line    
     }, [props.query]);
 
     async function getSearchResults() {
@@ -28,6 +31,7 @@ export default function SearchResults(props) {
                 <>
                 <ResultsDisplay
                     title="Here's what we found"
+                    none="We could't find any recipes. Perhaps try something different?"
                     results={searchResults.results}
                     selectRecipe={props.selectRecipe} />
                 </>

@@ -2,10 +2,19 @@ import React from 'react';
 import Button from '../components/Button';
 import Checkbox from '../components/Checkbox';
 import MealTypeCard from '../components/MealTypeCard';
-import {toggleQueryOption, setMealOption} from '../state/actions';
-import {mealTypes} from '../state/initialStoreData';
+import {mealTypes, options} from '../state/initialStoreData';
 
-function SearchSettings({ query, setQuery}) {
+function SearchSettings({ tempQuery, setQueryProp}) {
+
+    function setOption( opt ) {
+        let newOpts = tempQuery.options.includes(opt) ? tempQuery.options.filter( item => item !== opt ) : [...tempQuery.options, opt];                    
+        setQueryProp( 'options', newOpts );
+    }   
+
+    function setMealType( str ) {
+        let newType = tempQuery.mealType === str ? '' : str;
+        setQueryProp( 'mealType', newType );
+    }
     
     return (
         <div className="expand-collapse overflow-hidden">           
@@ -13,11 +22,11 @@ function SearchSettings({ query, setQuery}) {
             <div className="my-5">
                 <legend className="my-2 text-gray-400">Settings</legend>
                 <fieldset className="flex justify-between align-center md:justify-start">
-                    { query.options.map( (item, i) => (
+                    { options.map( item => (
                     <Checkbox 
                         item={item} 
-                        key={item.queryStr} 
-                        clickEv={() => setQuery( toggleQueryOption(query, i) ) } />
+                        key={item} 
+                        clickEv={() => setOption( item ) } />
                     )) }
                 </fieldset>
             </div>  
@@ -28,12 +37,12 @@ function SearchSettings({ query, setQuery}) {
                     { mealTypes.map( item => (
                         <MealTypeCard
                             data={item}     
-                            isChosen={ item.name === query.mealType }                       
+                            isChosen={ item.name === tempQuery.mealType }                       
                             key={item.name}
-                            clickEv={() => setQuery( setMealOption(query, item.name) ) } />
+                            clickEv={() => setMealType( item.name) }  />
                     )) }
                 </fieldset>
-            </div>
+            </div> 
                                             
             <Button 
                 className="bg-red-500 rounded-3xl p-3 my-2 text-white w-full text-center"

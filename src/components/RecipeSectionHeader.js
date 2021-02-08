@@ -1,18 +1,7 @@
-import FeatherIcon from 'feather-icons-react';
-
-export default function RecipeSectionHeader(props) {
-
-    const iconClass = props.isOpen ? 
-        'transform rotate-180 transition transition-transform' : 'transition transition-transform';
-
+export default function RecipeSectionHeader(props) {    
     return (
-        <div className="flex items-center mb-1 text-blue-600 lg:my-4">
-            <button onClick={ () => props.clickEv() }>
-                <h2 className="text-xl mr-1 cursor-pointer">{ props.name }</h2>
-            </button>
-            <div className={iconClass}>
-                <FeatherIcon icon="chevron-down" width="20" height="20" />
-            </div>
+        <div className="flex items-center mb-1 text-blue-600 lg:my-4">            
+            <h2 className="text-xl mr-1 cursor-pointer">{ props.name }</h2>            
         </div>
     )
 }
