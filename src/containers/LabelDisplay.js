@@ -1,11 +1,8 @@
-import {recipeTimeCalc} from '../state/actions';
+import {recipeTimeCalc, dietList} from '../state/actions';
 import RecipeLabel from '../components/RecipeLabel';
 import FeatherIcon from 'feather-icons-react';
 
-
-export default function LabelDisplay({limit, recipe}) {
-
-    const limitedDiets = () => limit ? recipe.diets.slice(0, limit) : recipe.diets;
+function LabelDisplay({limit, recipe}) {    
 
     return (
         <div className="flex flex-wrap">
@@ -14,7 +11,7 @@ export default function LabelDisplay({limit, recipe}) {
                 <span className="ml-1">{ recipeTimeCalc(recipe.readyInMinutes) }</span>
             </RecipeLabel>
 
-            { limitedDiets().map( (item, i) => 
+            { dietList(limit, recipe).map( (item, i) => 
                 <RecipeLabel color="blue" key={i}>
                     {item}
                 </RecipeLabel> )
@@ -22,3 +19,5 @@ export default function LabelDisplay({limit, recipe}) {
         </div>
     );
 }
+
+export default LabelDisplay;

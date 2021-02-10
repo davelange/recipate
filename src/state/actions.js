@@ -8,6 +8,11 @@ function recipeTimeCalc( n ) {
     }
 }
 
+//get limited list of diets
+function dietList(limit, recipe) {
+    return limit ? recipe.diets.slice(0, limit) : recipe.diets
+}
+
 //parse ingredient name
 function parseIngredientName(str) {
     return str.split(' ').map( item => 
@@ -80,4 +85,5 @@ export {
     parseIngredientQuantity,
     parseInstructions,
     parseSummary,
+    dietList
 };

@@ -61,8 +61,7 @@ function Search({ setQuery}) {
 
                 <SearchSettings
                     tempQuery ={tempQuery}
-                    setQueryProp={setQueryProp}
-                    expand={expand} />                    
+                    setQueryProp={setQueryProp} />                    
 
             </CSSTransition>
         </form>

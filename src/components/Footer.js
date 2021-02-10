@@ -1,4 +1,4 @@
-export default function Footer() {
+function Footer() {
     return (
         <div className="bg-gray-50">
             <div className="px-8 py-6 lg:container mx-auto bg-gray-50">
@@ -7,3 +7,5 @@ export default function Footer() {
         </div>
     );
 }
+
+export default Footer;

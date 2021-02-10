@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { RecipeContext } from '../state/appContexts';
 import { API_Get_Recipe } from '../api/apiRequests';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { saveToLocalStorage, processSavedRecipes } from '../state/actions';
 import SaveRecipe from '../containers/SaveRecipe';
 import RecipeHeader from '../containers/RecipeHeader';
@@ -10,11 +9,11 @@ import RecipeInstructions from '../containers/RecipeInstructions';
 import Loader from '../components/Loader';
 import AboutRecipe from '../components/AboutRecipe';
 
-function Recipe( {savedRecipes, setSavedRecipes} ) {
+function Recipe({savedRecipes, setSavedRecipes}) {
+         
+    const { id } = useParams();    
 
-    const { selectedRecipe, setSelectedRecipe } = React.useContext(RecipeContext);
-
-    const location = useLocation();            
+    const [recipe, setRecipe] = React.useState();
     
     useEffect( () => {                                       
         getRecipeById();           
@@ -22,54 +21,46 @@ function Recipe( {savedRecipes, setSavedRecipes} ) {
     }, []);
 
     async function getRecipeById() {
-        const data = await API_Get_Recipe( getId() );        
-        setSelectedRecipe( data );        
+        const data = await API_Get_Recipe( id );        
+        setRecipe( data );
     }      
-
-    function getId() {
-        return selectedRecipe.id ? selectedRecipe.id : location.pathname.split('/').reverse()[0];
-    }    
-
-    function isLoaded() {
-        return ('title' in selectedRecipe);
-    }
-
+ 
     function isSaved() {
-        return savedRecipes.filter( item => item.id === getId() ).length > 0;        
+        return savedRecipes.filter( item => item.id == id ).length;        
     }
 
-    function addToSavedRecipes( add ) {        
-        let newData = processSavedRecipes( savedRecipes, selectedRecipe, 'add' );
+    function updateSavedRecipes( action ) {        
+        let newData = processSavedRecipes( savedRecipes, recipe, action );
         setSavedRecipes( newData );
-        saveToLocalStorage( newData );
+        saveToLocalStorage( newData ); 
     } 
     
     return (
         <div className="lg:container mx-auto py-6 px-8">
-            { !isLoaded() ? (
+            { !recipe ? (
                 <Loader />
             ) : (
                 <>               
                 <div className="lg:w-3/5 mx-auto">
 
                     <RecipeHeader 
-                        data={selectedRecipe} />
+                        data={recipe} />
                     
                     <SaveRecipe 
                         saved={ isSaved() } 
-                        setSaved={ addToSavedRecipes }/>            
+                        setSaved={ updateSavedRecipes }/>            
         
                     <RecipeIngredients 
-                        ingredients={selectedRecipe.extendedIngredients}
-                        servings={selectedRecipe.servings} /> 
+                        ingredients={recipe.extendedIngredients}
+                        servings={recipe.servings} /> 
 
                     <RecipeInstructions
-                        data={selectedRecipe.analyzedInstructions} />                                 
+                        data={recipe.analyzedInstructions} />                                 
 
                     <AboutRecipe
-                        summary={selectedRecipe.summary}
-                        text={selectedRecipe.creditsText}
-                        sourceUrl={selectedRecipe.sourceUrl} />                    
+                        summary={recipe.summary}
+                        text={recipe.creditsText}
+                        sourceUrl={recipe.sourceUrl} />                    
                 </div>
                 </>                                                                
             )}

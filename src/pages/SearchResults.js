@@ -1,9 +1,9 @@
 import React from 'react';
 import {API_ComplexSearch} from '../api/apiRequests';
-import { ResultsDisplay } from '../containers/ResultsDisplay';
+import RecipeList from '../containers/RecipeList';
 import Loader from '../components/Loader';
 
-export default function SearchResults(props) {
+export default function SearchResults({query}) {
 
     const [searchResults, setSearchResults] = React.useState(false);
 
@@ -12,10 +12,10 @@ export default function SearchResults(props) {
     React.useEffect( () => {        
         getSearchResults();    
         // eslint-disable-next-line    
-    }, [props.query]);
+    }, [query]);
 
     async function getSearchResults() {
-        const data = await API_ComplexSearch(props.query);
+        const data = await API_ComplexSearch(query);
         setSearchResults( data );        
     }
 
@@ -29,11 +29,10 @@ export default function SearchResults(props) {
                 <Loader />                
                 :
                 <>
-                <ResultsDisplay
+                <RecipeList
                     title="Here's what we found"
                     none="We could't find any recipes. Perhaps try something different?"
-                    results={searchResults.results}
-                    selectRecipe={props.selectRecipe} />
+                    results={searchResults.results} />
                 </>
             }
         </div>

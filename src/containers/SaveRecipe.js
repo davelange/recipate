@@ -2,7 +2,7 @@ import { SwitchTransition, CSSTransition } from 'react-transition-group';
 import Button from '../components/Button';
 import FeatherIcon from 'feather-icons-react';
 
-export default function SaveRecipe(props) {
+function SaveRecipe({saved, setSaved}) {
 
     const classNames = 'py-2 text-red-500 rounded-lg flex items-center ml-auto lg:ml-0 lg:mr-auto lg:mt-4';
 
@@ -10,19 +10,19 @@ export default function SaveRecipe(props) {
         <SwitchTransition mode="out-in">
             <CSSTransition
                 timeout={300} 
-                key={ props.saved }
+                key={ saved }
                 classNames="toggle-saved">
                 
                 <div>
-                { props.saved ? (
+                { saved ? (
                     <Button
-                        clickEv={() => props.setSaved( false )}                                                            
+                        clickEv={() => setSaved( 'remove' )}                                                            
                         className={classNames}>
                         <span>Remove from saved</span>
                     </Button>
                 ) : (                    
                     <Button
-                        clickEv={() => props.setSaved( true )}                                                   
+                        clickEv={() => setSaved( 'add' )}                                                   
                         className={classNames}>
                             <span className="mr-1">Save</span>
                             <FeatherIcon icon="heart" height="20" width="20"/>
@@ -33,3 +33,5 @@ export default function SaveRecipe(props) {
         </SwitchTransition>
     )
 }
+
+export default SaveRecipe;

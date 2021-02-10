@@ -1,8 +1,10 @@
-export default function Button(props) {
+function Button({ clickEv, type, className, text, children}) {
     return (
-        <button onClick={props.clickEv} type={props.type} className={props.className}>
-            { props.text && <span>{props.text}</span> }
-            {props.children}
+        <button onClick={clickEv} type={type} className={className}>
+            { text && <span>{text}</span> }
+            {children}
         </button>
     );
 }
+
+export default Button;

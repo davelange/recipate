@@ -1,4 +1,4 @@
-export default function Loader() {
+function Loader() {
 
     return (
         <div className="flex flex-col justify-center items-center h-60">
@@ -7,3 +7,5 @@ export default function Loader() {
         </div>
     )
 }
+
+export default Loader;

@@ -31,7 +31,6 @@ const options = [
 const mealTypes = [
     {
         name: 'Main Course',
-        queryStr: 'main-course',
         img: {
             webpS: mainc_wp_sm,
             webpM: mainc_wp_m,            
@@ -40,7 +39,6 @@ const mealTypes = [
     },
     {
         name: 'Soup',
-        queryStr: 'soup',
         img: {
             webpS: soup_wp_sm,
             webpM: soup_wp_m,
@@ -49,7 +47,6 @@ const mealTypes = [
     },
     {
         name: 'Finger food',
-        queryStr: 'fingerfood',
         img: {
             webpS: fingerf_wp_sm,
             webpM: fingerf_wp_m,
@@ -58,7 +55,6 @@ const mealTypes = [
     },
     {
         name: 'Salad',
-        queryStr: 'salad',
         img: {
             webpS: salad_wp_sm,
             webpM: salad_wp_m,
@@ -67,7 +63,6 @@ const mealTypes = [
     },
     {
         name: 'Dessert',
-        queryStr: 'dessert',
         img: {
             webpS: dessert_wp_sm,
             webpM: dessert_wp_m,
@@ -76,7 +71,6 @@ const mealTypes = [
     },
     {
         name: 'Snack',
-        queryStr: 'snack',
         img: {
             webpS: snack_wp_sm,
             webpM: snack_wp_m,

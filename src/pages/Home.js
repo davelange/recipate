@@ -1,7 +1,7 @@
 import React from 'react';
 import {API_Random} from '../api/apiRequests';
 import Loader from '../components/Loader';
-import {ResultsDisplay} from '../containers/ResultsDisplay';
+import RecipeList from '../containers/RecipeList';
 
 export default function Home({savedRecipes}) {
 
@@ -27,12 +27,12 @@ export default function Home({savedRecipes}) {
                 <Loader />
             ) : (
                 <>                
-                <ResultsDisplay 
+                <RecipeList 
                     results={popularRecipes}
                     title="Popular right now"
                     none="Something went wrong :(" />
                     
-                <ResultsDisplay
+                <RecipeList
                     results={savedRecipes}
                     title="Saved recipes"
                     none="You haven't saved any recipes yet." />

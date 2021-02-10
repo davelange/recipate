@@ -1,18 +1,19 @@
 import LabelDisplay from "./LabelDisplay";
 
-export default function RecipeHeader(props) {
+function RecipeHeader({data}) {
     return (
         <div>
-            <h1 className="text-2xl mb-2 lg:my-2 lg:text-3xl text-gray-800">{ props.data.title }</h1>
+            <h1 className="text-2xl mb-2 lg:my-2 lg:text-3xl text-gray-800">{ data.title }</h1>
             
             <LabelDisplay 
                 limit={0}
-                recipe={ props.data} />
-
+                recipe={ data} />
             <img 
-                src={ props.data.image } 
-                alt={props.data.title} 
+                src={ data.image } 
+                alt={data.title} 
                 className="my-3 rounded-2xl lg:mt-6"/>                    
         </div>
     )
 }
+
+export default RecipeHeader;

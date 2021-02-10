@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { RecipeContext } from './state/appContexts';
 import { readLocalStorage } from './state/actions';
 import Home from './pages/Home';
 import SearchResults from './pages/SearchResults';
@@ -11,12 +10,10 @@ import Footer from './components/Footer';
 function App() {
   const [query, setQuery] = React.useState({});
   const [savedRecipes, setSavedRecipes] = React.useState( readLocalStorage() );
-  const [selectedRecipe, setSelectedRecipe] = React.useState({});
 
   return (
     <div className="App flex flex-col h-full">    
       <div className="flex-grow">
-      <RecipeContext.Provider value={{ selectedRecipe, setSelectedRecipe}} >
         <BrowserRouter>
 
           <Search            
@@ -31,11 +28,10 @@ function App() {
 
             <Route path="/search">
               <SearchResults         
-                query={query}        
-                selectRecipe={setSelectedRecipe} />
+                query={query} />
             </Route>
 
-            <Route path="/recipe">
+            <Route path="/recipe/:id">
               <Recipe
                 savedRecipes={ savedRecipes }
                 setSavedRecipes={ setSavedRecipes } />
@@ -43,7 +39,6 @@ function App() {
 
           </Switch>
         </BrowserRouter>
-      </RecipeContext.Provider>
       </div>  
       <Footer />
     </div>

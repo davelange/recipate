@@ -1,12 +1,14 @@
-export default function Checkbox(props) {
+function Checkbox({item, clickEv}) {
     return (
-        <label htmlFor={props.item.queryStr} className="lg:mr-4" >
+        <label htmlFor={item} className="lg:mr-4" >
         <input
             className="mr-1" 
-            id={props.item} 
+            id={item} 
             type="checkbox"             
-            onChange={ props.clickEv } />
-            {props.item}
+            onChange={ clickEv } />
+            {item}
         </label>
     );
 }
+
+export default Checkbox;
