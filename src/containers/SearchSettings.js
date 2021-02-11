@@ -37,6 +37,7 @@ function SearchSettings({ tempQuery, setQueryProp}) {
                     { mealTypes.map( item => (
                         <MealTypeCard
                             data={item}     
+                            // eslint-disable-next-line
                             isChosen={ item.name == tempQuery.mealType }                       
                             key={item.name}
                             clickEv={() => setMealType( item.name) }  />

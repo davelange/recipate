@@ -26,6 +26,7 @@ function Recipe({savedRecipes, setSavedRecipes}) {
     }      
  
     function isSaved() {
+        // eslint-disable-next-line
         return savedRecipes.filter( item => item.id == id ).length;        
     }
 
