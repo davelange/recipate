@@ -1,4 +1,4 @@
-const API_KEY = '1372edba263a4d10b79a8a8c46f412bf';
+import { API_KEY } from './key.js';
 const BASE_URL = `https://api.spoonacular.com`;
 
 //cache object
